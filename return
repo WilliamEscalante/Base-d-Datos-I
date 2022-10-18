@@ -1,0 +1,402 @@
+[1mdiff --git a/HITO3/LAB-01/SQLHITO3_LABORATORIO_1.sql b/HITO3/LAB-01/SQLHITO3_LABORATORIO_1.sql[m
+[1mdeleted file mode 100644[m
+[1mindex a43a4bf..0000000[m
+[1m--- a/HITO3/LAB-01/SQLHITO3_LABORATORIO_1.sql[m
+[1m+++ /dev/null[m
+[36m@@ -1,161 +0,0 @@[m
+[31m-create database universidad;[m
+[31m-[m
+[31m-use universidad;[m
+[31m-[m
+[31m--- 1.- Eliminar las tablas de inscripción, estudiantes y materias de la base de datos UNIVERSIDAD.[m
+[31m-[m
+[31m-	DROP TABLE inscripcion;[m
+[31m-	DROP TABLE estudiante;[m
+[31m-	DROP TABLE materia;[m
+[31m-[m
+[31m--- 2.- Regenerar las tablas de acuerdo a la siguiente imagen [m
+[31m---    (Como referencia se debe de crear las siguientes tablas y el nombre de su PRIMARY KEY).[m
+[31m-[m
+[31m-create table escuela ([m
+[31m-	id_esc integer identity primary key not null,[m
+[31m-	nombre varchar (100) not null,[m
+[31m-	direccion varchar (100) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table materias ([m
+[31m-	id_mat integer identity primary key not null,[m
+[31m-	nombre_mat varchar (100) not null, [m
+[31m-	cod_mat varchar (100) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table periodo ([m
+[31m-	id_per integer identity primary key not null,[m
+[31m-	ano_gestion integer not null,[m
+[31m-	semestre varchar (50) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table estudiante ([m
+[31m-	id_est_cedula integer identity primary key not null,[m
+[31m-	nombre varchar (100) not null,[m
+[31m-	apellido varchar (100) not null,[m
+[31m-	sexo varchar (100) not null,[m
+[31m-	direccion varchar (200) not null,[m
+[31m-	telefono integer not null,[m
+[31m-	email varchar (50) not null,[m
+[31m-	edad integer not null,[m
+[31m-	id_esc integer not null,[m
+[31m-	foreign key (id_esc) references escuela (id_esc)[m
+[31m-	);[m
+[31m-[m
+[31m-create table kardex ([m
+[31m-	id_kar integer identity primary key not null,[m
+[31m-	nota_num integer not null,[m
+[31m-	nota_alfabe varchar (100) not null,[m
+[31m-	estado varchar (10) not null,[m
+[31m-	id_mat integer not null,[m
+[31m-	id_est_cedula integer not null,[m
+[31m-	id_per integer not null,[m
+[31m-	foreign key (id_mat) references materia (id_mat),[m
+[31m-	foreign key (id_est_cedula) references estudiante (id_est_cedula),[m
+[31m-	foreign key (id_per) references periodo (id_per)[m
+[31m-	);[m
+[31m-[m
+[31m--- 3.- Insertar registros a las tablas.[m
+[31m-[m
+[31m--- Registro de la tabla ESCUELA[m
+[31m-[m
+[31m-INSERT INTO escuela (nombre,direccion)[m
+[31m-	VALUES ('San Felipe Asturias II', 'Zona Illampu Av. Prol. San Lorenzo');[m
+[31m-[m
+[31m--- Registro de la tabla MATERIA[m
+[31m-[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Introduccion a la Arquitectura','ARQ-101');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Urbanismo y Diseno','ARQ-102');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Dibujo y Pintura Arquitectonico','ARQ-103');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Matematica discreta','ARQ-104');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Fisica Basica','ARQ-105');[m
+[31m-[m
+[31m---Registro de la tabla PERIODO[m
+[31m-[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2016, 'Semestre 1');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2016, 'Semestre 2');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2017, 'Semestre 1');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2017, 'Semestre 2');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2018, 'Semestre 1');[m
+[31m-[m
+[31m--- Registro de la tabla ESTUDIANTE[m
+[31m-[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Ximena', 'Arias Ballesteros', 'femenino', 'Av. 6 de Agosto', 79617575, 'xime@gmail.com', 25, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Saul', 'Montes Valenzuela', 'masculino', 'Av. 6 de Agosto', 79617576, 'saul@gmail.com', 24, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES( 'Carla', 'Mavir Uria', 'femenino', 'Av. 6 de Agosto', 79617577, 'carla@gmail.com', 28, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Joel', 'Castillo Fuentes', 'masculino', 'Av. 6 de Agosto', 79617578, 'joel@gmail.com', 21, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Augusto', 'Copar Copar', 'femenino', 'Av. 6 de Agosto', 79617579, 'augusto@gmail.com', 20, 1);[m
+[31m-[m
+[31m--- 4.- Generar los registros de la tabla kardex (Esta tabla maneja la relación entre las otras tablas)[m
+[31m-[m
+[31m--- Registro de la tabla KARDEX[m
+[31m-[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (51, 'cincuenta y uno', 'APROBADO',1,1,1);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (31, 'treinta y uno', 'REPROBADO',2,2,2);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (61, 'sesenta y uno', 'APROBADO',1,3,1);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (41, 'cuarenta y uno', 'REPROBADO',2,4,2);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (81, 'ochenta y uno', 'APROBADO',4,4,4);[m
+[31m-[m
+[31m--- 5.- El registro de las tablas debería de quedar de la siguiente manera.[m
+[31m-[m
+[31m-SELECT*[m
+[31m-FROM escuela;[m
+[31m-[m
+[31m-SELECT*[m
+[31m-FROM materia;[m
+[31m-[m
+[31m-SELECT*[m
+[31m-FROM periodo;[m
+[31m-[m
+[31m-SELECT*[m
+[31m-FROM estudiante;[m
+[31m-[m
+[31m-SELECT*[m
+[31m-FROM kardex;[m
+[31m-[m
+[31m--- 6.- Mostrar los nombres y apellidos de los estudiantes mayores a 24 anos y que sean del sexo masculino/femenino.[m
+[31m-[m
+[31m-	SELECT est.nombre, est.apellido, est.edad, est.sexo[m
+[31m-	FROM estudiante AS est[m
+[31m-	WHERE sexo='masculino' AND  edad >= 24; [m
+[31m-[m
+[31m--- 7.- Mostrar los nombres,apellidos y la edad de todos los estudiantes reprobados del sexo masculino.[m
+[31m-[m
+[31m-	SELECT est.nombre, est.apellido, est.edad, kar.estado, kar.nota_num, est.sexo[m
+[31m-	FROM estudiante AS est[m
+[31m-	INNER JOIN kardex AS kar ON kar.id_est_cedula = est.id_est_cedula[m
+[31m-	WHERE kar.nota_num<51 AND est.sexo = 'masculino';[m
+[31m-[m
+[31m--- EXTRAS[m
+[31m-[m
+[31m-	SELECT*[m
+[31m-	FROM estudiante[m
+[31m-	WHERE sexo='masculino' and  edad >= 18;[m
+[31m-[m
+[31m-	SELECT*[m
+[31m-	FROM estudiante[m
+[31m-	WHERE edad>=18;[m
+[31m-[m
+[31m-	SELECT est.nombre, est.apellido[m
+[31m-	FROM kardex AS kar, estudiante AS est[m
+[31m-	WHERE kar.id_est_cedula = est.id_est_cedula AND kar.nota_num >= 51;[m
+\ No newline at end of file[m
+[1mdiff --git a/HITO3/LAB-02/SQLHITO3_LABORATORIO_2.sql b/HITO3/LAB-02/SQLHITO3_LABORATORIO_2.sql[m
+[1mdeleted file mode 100644[m
+[1mindex a290fac..0000000[m
+[1m--- a/HITO3/LAB-02/SQLHITO3_LABORATORIO_2.sql[m
+[1m+++ /dev/null[m
+[36m@@ -1,119 +0,0 @@[m
+[31m-create database universidad01;[m
+[31m-[m
+[31m-use universidad01;[m
+[31m-[m
+[31m--- 9.- Manejo de JOINS (Conjunto de letras)[m
+[31m-[m
+[31m-create table TABLE_A ([m
+[31m-	letra_A varchar (10) primary key not null,[m
+[31m-	);[m
+[31m-[m
+[31m-create table TABLE_B ([m
+[31m-	letra_B varchar (10) primary key not null,[m
+[31m-	);[m
+[31m-[m
+[31m-insert into TABLE_A (Letra_A)[m
+[31m-	values ('D');[m
+[31m-insert into TABLE_A (Letra_A)[m
+[31m-	values ('E');[m
+[31m-insert into TABLE_A (Letra_A)[m
+[31m-	values ('F');[m
+[31m-insert into TABLE_A (Letra_A)[m
+[31m-	values ('G');[m
+[31m-insert into TABLE_A (Letra_A)[m
+[31m-	values ('H');[m
+[31m-[m
+[31m-	SELECT ta.* FROM TABLE_A AS ta;[m
+[31m-[m
+[31m-insert into TABLE_B (Letra_B)[m
+[31m-	values ('A');[m
+[31m-insert into TABLE_B (Letra_B)[m
+[31m-	values ('E');[m
+[31m-insert into TABLE_B (Letra_B)[m
+[31m-	values ('B');[m
+[31m-insert into TABLE_B (Letra_B)[m
+[31m-	values ('H');[m
+[31m-[m
+[31m-	select tb.* from TABLE_B as tb;[m
+[31m-[m
+[31m-select ta.Letra_A, tb.Letra_B[m
+[31m-from TABLE_A as ta[m
+[31m- inner join TABLE_B as tb on ta.Letra_A = tb.Letra_B;[m
+[31m-[m
+[31m- -- 10.- Manejo de Joins Nombres de paralelo (dba_i - dba_ii)[m
+[31m-[m
+[31m- create table TABLE_A1 ([m
+[31m-	numero_A integer not null,[m
+[31m-	);[m
+[31m-[m
+[31m-create table TABLE_B1 ([m
+[31m-	numero_B integer not null,[m
+[31m-	);[m
+[31m-[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (1);[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (3);[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (2);[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (4);[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (5);[m
+[31m-INSERT INTO TABLE_A1 (numero_A)[m
+[31m-	values (6);[m
+[31m-insert into TABLE_A1 (numero_A)[m
+[31m-	values (7);[m
+[31m-[m
+[31m-select ta1.* from TABLE_A1 as ta1;[m
+[31m-[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (4);[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (5);[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (6);[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (7);[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (8);[m
+[31m-insert into TABLE_B1 (Numero_B)[m
+[31m-values (9);[m
+[31m-[m
+[31m-select tb1.* from TABLE_B1 as tb1;[m
+[31m-[m
+[31m- -- 11.- Manejo de JOINS con condiciones (Conjunto de letras)[m
+[31m-[m
+[31m-select ta1.Numero_A, tb1.Numero_B[m
+[31m-from TABLE_A1 as ta1[m
+[31m-inner join TABLE_B1 as tb1 on ta1.Numero_A = tb1.Numero_B[m
+[31m-where ta1.Numero_A > 5 and tb1.Numero_B > 5 [m
+[31m-[m
+[31m--- 12.- Manejo de JOINS con 3 tablas[m
+[31m-[m
+[31m-create table TABLE_A2 ([m
+[31m-	NOTS_1 integer not null,[m
+[31m-	);[m
+[31m-[m
+[31m-create table TABLE_B2 ([m
+[31m-	NOTS_2 integer not null,[m
+[31m-	);[m
+[31m-[m
+[31m-create table TABLE_C2 ([m
+[31m-	NOTS_3 integer not null,[m
+[31m-	);[m
+[31m-[m
+[31m-insert into TABLE_A2 (NOTS_1)[m
+[31m-	values (51),(40),(60),(75),(30);[m
+[31m-[m
+[31m-insert into TABLE_B2 (NOTS_2)[m
+[31m-	values (60),(51),(100);[m
+[31m-[m
+[31m-insert into TABLE_C2 (NOTS_3)[m
+[31m-	values (20),(21),(23),(48),(51),(60);[m
+[31m-[m
+[31m-select  ta2.NOTS_1, tb2.NOTS_2, tc2.NOTS_3[m
+[31m-from TABLE_A2 as ta2[m
+[31m-inner join TABLE_B2 as tb2 on ta2.NOTS_1 = tb2.NOTS_2[m
+[31m-inner join TABLE_C2 as tc2 on ta2.NOTS_1 = tc2.NOTS_3;[m
+[31m-[m
+[1mdiff --git a/HITO3/LAB-03/SQLHITO3_LABORATORIO_3.sql b/HITO3/LAB-03/SQLHITO3_LABORATORIO_3.sql[m
+[1mdeleted file mode 100644[m
+[1mindex 7b69deb..0000000[m
+[1m--- a/HITO3/LAB-03/SQLHITO3_LABORATORIO_3.sql[m
+[1m+++ /dev/null[m
+[36m@@ -1,151 +0,0 @@[m
+[31m-create database universidad001;[m
+[31m-[m
+[31m-use universidad001;[m
+[31m-[m
+[31m-create table escuela ([m
+[31m-	id_esc integer identity primary key not null,[m
+[31m-	nombre varchar (100) not null,[m
+[31m-	direccion varchar (100) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table materia ([m
+[31m-	id_mat integer identity primary key not null,[m
+[31m-	nombre_mat varchar (100) not null, [m
+[31m-	cod_mat varchar (100) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table periodo ([m
+[31m-	id_per integer identity primary key not null,[m
+[31m-	ano_gestion integer not null,[m
+[31m-	semestre varchar (50) not null[m
+[31m-	);[m
+[31m-[m
+[31m-create table estudiante ([m
+[31m-	id_est_cedula integer identity primary key not null,[m
+[31m-	nombre varchar (100) not null,[m
+[31m-	apellido varchar (100) not null,[m
+[31m-	sexo varchar (100) not null,[m
+[31m-	direccion varchar (200) not null,[m
+[31m-	telefono integer not null,[m
+[31m-	email varchar (50) not null,[m
+[31m-	edad integer not null,[m
+[31m-	id_esc integer not null,[m
+[31m-	foreign key (id_esc) references escuela (id_esc)[m
+[31m-	);[m
+[31m-[m
+[31m-create table kardex ([m
+[31m-	id_kar integer identity primary key not null,[m
+[31m-	nota_num integer not null,[m
+[31m-	nota_alfabe varchar (100) not null,[m
+[31m-	estado varchar (10) not null,[m
+[31m-	id_mat integer not null,[m
+[31m-	id_est_cedula integer not null,[m
+[31m-	id_per integer not null,[m
+[31m-	foreign key (id_mat) references materia (id_mat),[m
+[31m-	foreign key (id_est_cedula) references estudiante (id_est_cedula),[m
+[31m-	foreign key (id_per) references periodo (id_per)[m
+[31m-	);[m
+[31m-[m
+[31m-INSERT INTO escuela (nombre,direccion)[m
+[31m-	VALUES ('San Felipe Asturias II', 'Zona Illampu Av. Prol. San Lorenzo');[m
+[31m-[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Introduccion a la Arquitectura','ARQ-101');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Urbanismo y Diseno','ARQ-102');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Dibujo y Pintura Arquitectonico','ARQ-103');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Matematica discreta','ARQ-104');[m
+[31m-INSERT INTO materia (nombre_mat, cod_mat) [m
+[31m-	VALUES ('Fisica Basica','ARQ-105');[m
+[31m-[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2016, 'Semestre 1');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2016, 'Semestre 2');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2017, 'Semestre 1');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2017, 'Semestre 2');[m
+[31m-INSERT INTO periodo (ano_gestion, semestre) [m
+[31m-	VALUES (2018, 'Semestre 1');[m
+[31m-[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Ximena', 'Arias Ballesteros', 'femenino', 'Av. 6 de Agosto', 79617575, 'xime@gmail.com', 25, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Saul', 'Montes Valenzuela', 'masculino', 'Av. 6 de Agosto', 79617576, 'saul@gmail.com', 24, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES( 'Carla', 'Mavir Uria', 'femenino', 'Av. 6 de Agosto', 79617577, 'carla@gmail.com', 28, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Joel', 'Castillo Fuentes', 'masculino', 'Av. 6 de Agosto', 79617578, 'joel@gmail.com', 21, 1);[m
+[31m-INSERT INTO estudiante ( nombre, apellido, sexo, direccion, telefono, email, edad, id_esc) [m
+[31m-	VALUES ( 'Augusto', 'Copar Copar', 'femenino', 'Av. 6 de Agosto', 79617579, 'augusto@gmail.com', 20, 1);[m
+[31m-[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (51, 'cincuenta y uno', 'APROBADO',1,1,1);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (31, 'treinta y uno', 'REPROBADO',2,2,2);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (61, 'sesenta y uno', 'APROBADO',1,3,1);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (41, 'cuarenta y uno', 'REPROBADO',2,4,2);[m
+[31m-INSERT INTO kardex(nota_num, nota_alfabe, estado, id_mat, id_est_cedula, id_per) [m
+[31m-	VALUES (81, 'ochenta y uno', 'APROBADO',4,4,4);[m
+[31m-[m
+[31m--- 14.- Que estudiantes(nombres, apellidos y la dirección) forman parte de la escuela “San Felipe Asturias II”.[m
+[31m-[m
+[31m-select est.nombre, est.apellido, esc.direccion, esc.nombre[m
+[31m-from escuela as esc[m
+[31m-inner join estudiante as est on esc.id_esc = est.id_esc[m
+[31m-where esc.nombre = 'San Felipe Asturias II';[m
+[31m-[m
+[31
