@@ -1,5 +1,4 @@
-# Base-d-Datos-I
-Portafolio de la Asignatura Base de Datos I
+
 <h1 align="center">BASE - DE - DATOS - I </h1>
 <h3 align="center">Tecnologias usadas: GitHub
 
